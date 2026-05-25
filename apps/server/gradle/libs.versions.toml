@@ -1,0 +1,47 @@
+[versions]
+jwt = "0.11.5"
+jackson = "2.19.4"
+springdoc = "2.8.6"
+firebase-admin = "9.7.0"
+
+[libraries]
+jsonwebtoken-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jwt" }
+jsonwebtoken-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jwt" }
+jsonwebtoken-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jwt" }
+spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+spring-boot-starter-seucirty-test = { module = "org.springframework.security:spring-security-test" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis" }
+spring-boot-starter-logging = { module = "org.springframework.boot:spring-boot-starter-logging" }
+spring-boot-starter-thymeleaf = { module = "org.springframework.boot:spring-boot-starter-thymeleaf" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-opentelemetry = { module = "io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter" }
+spring-tx = { module = "org.springframework:spring-tx" }
+database-h2 = { module = "com.h2database:h2" }
+database-mariadb = { module = "org.mariadb.jdbc:mariadb-java-client" }
+database-mysql = { module = "com.mysql:mysql-connector-j" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+junit-platfrom_launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockk = { module = "io.mockk:mockk", version = "1.13.5" }
+kotlin-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
+kotlin-fixture = { module = "com.appmattus.fixture:fixture", version = "1.2.0" }
+nanoid = { module = "io.viascom.nanoid:nanoid", version = "1.0.1" }
+spring-boot-starter-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+springdoc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
+embedded-redis = { module = "it.ozimov:embedded-redis", version = "0.7.2" }
+spring-mockk = { module = "com.ninja-squad:springmockk", version = "4.0.2" }
+bouncycastle = { module = "org.bouncycastle:bcprov-jdk18on", version = "1.78.1" }
+loki4j-appender = { module = "com.github.loki4j:loki-logback-appender", version = "2.0.1" }
+micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version = "1.14.6" }
+firebase-admin = { module = "com.google.firebase:firebase-admin", version.ref = "firebase-admin" }
+
+[bundles]
+jwt = ["jsonwebtoken-api", "jsonwebtoken-impl", "jsonwebtoken-jackson"]
+jackson = ["jackson-databind", "jackson-datatype-jsr310", "jackson-kotlin"]
+bootstrap = ["spring-boot-starter-web", "spring-boot-starter-validation", "springdoc"]
+monitoring = ["spring-boot-starter-opentelemetry", "loki4j-appender", "micrometer-registry-prometheus"]
+test = ["junit-platfrom_launcher", "mockk", "kotlin-junit5", "kotlin-fixture"]

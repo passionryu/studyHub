@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${STUDYHUB_DATASOURCE_URL:jdbc:mariadb://localhost:3307/studyhub}
+    username: ${STUDYHUB_DATASOURCE_USERNAME:studyhub}
+    password: ${STUDYHUB_DATASOURCE_PASSWORD:studyhub-local}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+

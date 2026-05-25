@@ -1,0 +1,16 @@
+services:
+  mariadb:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: studyhub
+      MARIADB_ROOT_USER: studyhub
+      MARIADB_ROOT_PASSWORD: studyhub-local
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
