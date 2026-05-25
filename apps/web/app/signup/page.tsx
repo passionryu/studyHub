@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 
+import { SignupForm } from "@/components/signup/signup-form"
 import { Button } from "@/components/ui/button"
 
 export default function SignupPage() {
@@ -21,6 +22,8 @@ export default function SignupPage() {
             Join StudyHub to organize notes, interview practice, and study questions in one place.
           </p>
         </section>
+
+        <SignupForm />
       </div>
     </main>
   )
