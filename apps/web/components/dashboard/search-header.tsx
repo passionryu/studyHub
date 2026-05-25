@@ -1,6 +1,7 @@
 "use client"
 
-import { Search, Command } from "lucide-react"
+import Link from "next/link"
+import { Search, Command, User, Settings, LogOut, UserPlus } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -13,7 +14,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { User, Settings, LogOut } from "lucide-react"
 
 interface SearchHeaderProps {
   onNavigate?: (section: string) => void
@@ -24,7 +24,6 @@ interface SearchHeaderProps {
 export function SearchHeader({ onNavigate, userName, userPlan }: SearchHeaderProps) {
   return (
     <header className="flex h-14 items-center justify-between border-b border-border bg-background px-6">
-      {/* Search */}
       <div className="relative flex-1 max-w-md">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
@@ -37,8 +36,13 @@ export function SearchHeader({ onNavigate, userName, userPlan }: SearchHeaderPro
         </div>
       </div>
 
-      {/* Right side */}
       <div className="flex items-center gap-2">
+        <Button asChild size="sm" variant="outline" className="hidden sm:inline-flex">
+          <Link href="/signup">
+            <UserPlus className="h-4 w-4" />
+            Sign up
+          </Link>
+        </Button>
         <ThemeSelector />
         
         <DropdownMenu>
@@ -51,7 +55,7 @@ export function SearchHeader({ onNavigate, userName, userPlan }: SearchHeaderPro
               <Avatar className="h-8 w-8 border border-border">
                 <AvatarImage src="" alt={userName || "User"} />
                 <AvatarFallback className="bg-secondary text-secondary-foreground text-xs">
-                  {userName ? userName.split(" ").map(n => n[0]).join("").toUpperCase() : "U"}
+                  {userName ? userName.split(" ").map((n) => n[0]).join("").toUpperCase() : "U"}
                 </AvatarFallback>
               </Avatar>
             </Button>
