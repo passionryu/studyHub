@@ -33,7 +33,7 @@ class ApiExceptionHandler {
                 "who=anonymous, " +
                 "what=POST /api/members/signup, " +
                 "requestData=validationFields:${exception.bindingResult.fieldErrors.map { it.field }.distinct()}, " +
-                "reason=message:invalid_request"
+                "reason=message:요청 값 검증 실패"
         )
 
         return ResponseEntity.badRequest()
