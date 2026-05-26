@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test:signup": "node scripts/verify-signup-page.mjs"
+    "test:signup": "node scripts/verify-signup-page.mjs",
+    "test:signup-api-connect": "node scripts/verify-signup-api-connect.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
