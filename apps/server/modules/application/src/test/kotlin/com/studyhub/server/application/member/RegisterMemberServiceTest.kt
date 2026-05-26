@@ -13,8 +13,10 @@ class RegisterMemberServiceTest {
         val repository = FakeMemberRepository()
         val service = RegisterMemberService(
             memberEmailDuplicateChecker = MemberEmailDuplicateChecker(repository),
+            memberRegistrationFactory = MemberRegistrationFactory(),
             memberPasswordHasher = FixedPasswordHasher(),
             memberRepository = repository,
+            registerMemberResultMapper = RegisterMemberResultMapper(),
         )
 
         val result = service.registerMember(
@@ -36,8 +38,10 @@ class RegisterMemberServiceTest {
         val repository = FakeMemberRepository(existingEmails = setOf("ryu@example.com"))
         val service = RegisterMemberService(
             memberEmailDuplicateChecker = MemberEmailDuplicateChecker(repository),
+            memberRegistrationFactory = MemberRegistrationFactory(),
             memberPasswordHasher = FixedPasswordHasher(),
             memberRepository = repository,
+            registerMemberResultMapper = RegisterMemberResultMapper(),
         )
 
         assertFailsWith<DuplicateMemberEmailException> {

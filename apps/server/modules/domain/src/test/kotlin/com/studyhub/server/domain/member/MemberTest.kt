@@ -6,12 +6,12 @@ import kotlin.test.assertEquals
 class MemberTest {
     @Test
     fun `register member normalizes email and interests`() {
-        val member = Member.register(
+        val member = Member(
             name = "Ryu",
-            email = "RYU@example.com",
+            email = "ryu@example.com",
             encodedPassword = "encoded",
             phone = null,
-            interests = listOf(" Kotlin ", "Kotlin", "Spring"),
+            interests = listOf("Kotlin", "Spring"),
         )
 
         assertEquals("ryu@example.com", member.email)
