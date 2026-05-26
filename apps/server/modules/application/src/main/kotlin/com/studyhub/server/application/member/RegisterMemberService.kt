@@ -2,15 +2,16 @@ package com.studyhub.server.application.member
 
 import com.studyhub.server.application.member.port.MemberPasswordHasher
 import com.studyhub.server.application.member.port.MemberRepository
-import com.studyhub.server.domain.member.Member
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class RegisterMemberService(
     private val memberEmailDuplicateChecker: MemberEmailDuplicateChecker,
+    private val memberRegistrationFactory: MemberRegistrationFactory,
     private val memberPasswordHasher: MemberPasswordHasher,
     private val memberRepository: MemberRepository,
+    private val registerMemberResultMapper: RegisterMemberResultMapper,
 ) {
     @Transactional
     fun registerMember(command: RegisterMemberCommand): RegisterMemberResult {
@@ -18,7 +19,7 @@ class RegisterMemberService(
 
         val encodedPassword = memberPasswordHasher.hashMemberPassword(command.password)
 
-        val member = Member.register(
+        val member = memberRegistrationFactory.createRegisteringMember(
             name = command.name,
             email = command.email,
             encodedPassword = encodedPassword,
@@ -28,6 +29,6 @@ class RegisterMemberService(
 
         val registeredMember = memberRepository.save(member)
 
-        return RegisterMemberResult.from(registeredMember)
+        return registerMemberResultMapper.mapRegisteredMember(registeredMember)
     }
 }
