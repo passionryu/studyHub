@@ -12,5 +12,15 @@ class MemberRepositoryAdapter(
         memberJpaRepository.existsByEmail(email)
 
     override fun save(member: Member): Member =
-        memberJpaRepository.save(MemberJpaEntity.from(member)).toDomain()
+        memberJpaRepository.save(member.toJpaEntity()).toDomain()
+
+    private fun Member.toJpaEntity(): MemberJpaEntity =
+        MemberJpaEntity(
+            id = id,
+            name = name,
+            email = email,
+            encodedPassword = encodedPassword,
+            phone = phone,
+            interests = interests.toMutableList(),
+        )
 }

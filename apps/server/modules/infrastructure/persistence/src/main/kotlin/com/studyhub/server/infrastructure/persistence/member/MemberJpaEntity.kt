@@ -54,16 +54,4 @@ class MemberJpaEntity(
             phone = phone,
             interests = interests.toList(),
         )
-
-    companion object {
-        fun from(member: Member): MemberJpaEntity =
-            MemberJpaEntity(
-                id = member.id,
-                name = member.name,
-                email = member.email,
-                encodedPassword = member.encodedPassword,
-                phone = member.phone,
-                interests = member.interests.toMutableList(),
-            )
-    }
 }
