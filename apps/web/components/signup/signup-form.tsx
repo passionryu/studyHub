@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
+import { Eye, EyeOff } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -41,6 +42,8 @@ export function SignupForm() {
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [registeredMemberName, setRegisteredMemberName] = useState<string | null>(null)
   const [successProgress, setSuccessProgress] = useState(0)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const validation = useMemo(() => validateSignup(values), [values])
 
@@ -119,13 +122,49 @@ export function SignupForm() {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="grid gap-2">
             <Label htmlFor="password">비밀번호</Label>
-            <Input id="password" type="password" value={values.password} onChange={(event) => updateField("password", event.target.value)} />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={values.password}
+                onChange={(event) => updateField("password", event.target.value)}
+                className="pr-10"
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute top-1/2 right-1 h-8 w-8 -translate-y-1/2 text-muted-foreground"
+                aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
+                onClick={() => setShowPassword((current) => !current)}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </Button>
+            </div>
             {errorFor("password") && <p className="text-sm text-destructive">{errorFor("password")}</p>}
           </div>
 
           <div className="grid gap-2">
             <Label htmlFor="confirmPassword">비밀번호 확인</Label>
-            <Input id="confirmPassword" type="password" value={values.confirmPassword} onChange={(event) => updateField("confirmPassword", event.target.value)} />
+            <div className="relative">
+              <Input
+                id="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                value={values.confirmPassword}
+                onChange={(event) => updateField("confirmPassword", event.target.value)}
+                className="pr-10"
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute top-1/2 right-1 h-8 w-8 -translate-y-1/2 text-muted-foreground"
+                aria-label={showConfirmPassword ? "비밀번호 확인 숨기기" : "비밀번호 확인 보기"}
+                onClick={() => setShowConfirmPassword((current) => !current)}
+              >
+                {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </Button>
+            </div>
             {errorFor("confirmPassword") && <p className="text-sm text-destructive">{errorFor("confirmPassword")}</p>}
           </div>
         </div>
