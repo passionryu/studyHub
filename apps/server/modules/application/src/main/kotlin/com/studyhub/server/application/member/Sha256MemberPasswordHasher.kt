@@ -1,9 +1,9 @@
 package com.studyhub.server.application.member
 
 import com.studyhub.server.application.member.port.MemberPasswordHasher
+import org.springframework.stereotype.Component
 import java.security.MessageDigest
 import java.util.Base64
-import org.springframework.stereotype.Component
 
 @Component
 class Sha256MemberPasswordHasher : MemberPasswordHasher {
