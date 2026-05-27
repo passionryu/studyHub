@@ -15,6 +15,11 @@ node_modules
 .DS_Store
 .vercel
 
+# IntelliJ IDEA local project files
+.idea/
+**/.idea/
+*.iml
+
 # Gradle / Kotlin
 .gradle/
 build/

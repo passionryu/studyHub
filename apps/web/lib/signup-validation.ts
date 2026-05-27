@@ -18,27 +18,19 @@ export function validateSignup(values: SignupFormValues): SignupValidationResult
   const errors: SignupValidationResult["errors"] = {}
 
   if (!values.name.trim()) {
-    errors.name = "Name is required."
+    errors.name = "이름을 입력해주세요."
   }
 
   if (!emailPattern.test(values.email.trim())) {
-    errors.email = "Enter a valid email address."
+    errors.email = "올바른 이메일 주소를 입력해주세요."
   }
 
   if (values.password.length < 8) {
-    errors.password = "Password must be at least 8 characters."
+    errors.password = "비밀번호는 8자 이상이어야 합니다."
   }
 
   if (values.password !== values.confirmPassword) {
-    errors.confirmPassword = "Passwords do not match."
-  }
-
-  if (!values.phone.trim()) {
-    errors.phone = "Phone number is required."
-  }
-
-  if (!values.interests.trim()) {
-    errors.interests = "Add at least one interest."
+    errors.confirmPassword = "비밀번호가 서로 일치하지 않습니다."
   }
 
   return {
