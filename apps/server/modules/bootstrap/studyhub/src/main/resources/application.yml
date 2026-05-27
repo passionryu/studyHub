@@ -1,6 +1,10 @@
 spring:
   application:
     name: studyhub-server
+  data:
+    redis:
+      host: ${STUDYHUB_REDIS_HOST:localhost}
+      port: ${STUDYHUB_REDIS_PORT:6379}
   profiles:
     group:
       local:
@@ -9,7 +13,7 @@ spring:
       - datasource
 
 server:
-  port: 8080
+  port: 3001
 
 management:
   endpoints:
@@ -17,3 +21,9 @@ management:
       exposure:
         include: health,info
 
+studyhub:
+  security:
+    jwt:
+      secret: ${STUDYHUB_JWT_SECRET:local-studyhub-jwt-secret-must-be-changed}
+      access-token-expiration: ${STUDYHUB_ACCESS_TOKEN_EXPIRATION:1h}
+      refresh-token-expiration: ${STUDYHUB_REFRESH_TOKEN_EXPIRATION:7d}
